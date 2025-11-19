@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/estilos.css">
+<title>Ejercicios – Astronomía, Medio Ambiente y Salud</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+section { border: 1px solid #bbb; padding: 15px; margin-bottom: 20px; }
+button { margin-top: 10px; }
+</style>
+</head>
+<body>
+<h1>Reto JS</h1>
+<section>
+<h2>Astronomía</h2>
+<button onclick="brillo()">Clasificación de brillo estelar</button>
+<p id="r1"></p>
+<script>
+function brillo(){
+ let mag = Number(prompt("Ingrese magnitud aparente:"));
+ let texto = "";
+ if(mag <= 0){ texto = "Extremadamente brillante"; }
+ else if(mag <= 1){ texto = "Muy brillante"; }
+ else if(mag <= 2){ texto = "Brillante"; }
+ else if(mag <= 6){ texto = "Débil"; }
+ else { texto = "No visible"; }
+ document.getElementById("r1").innerText = texto;
+}
+</script>
+<button onclick="distancias()">Registrar distancias de planetas</button>
+<p id="r2"></p>
+<script>
+function distancias(){
+ let cant = Number(prompt("¿Cuántas distancias desea registrar?"));
+ let suma = 0;
+ for(let i = 1; i <= cant; i++){
+   let d = Number(prompt("Distancia en millones de km #"+i+":"));
+   suma += d;
+ }
+ let prom = suma / cant;
+ document.getElementById("r2").innerText = "Promedio: " + prom + " millones km";
+}
+</script>
+<button onclick="crateres()">Contar cráteres lunares grandes</button>
+<p id="r3"></p>
+<script>
+function crateres(){
+ let diam = Number(prompt("Ingrese diámetro (0 para terminar):"));
+ let total = 0;
+ while(diam != 0){
+   if(diam > 50){ total++; }
+   diam = Number(prompt("Ingrese diámetro (0 para terminar):"));
+ }
+ document.getElementById("r3").innerText = "Cráteres grandes: " + total;
+}
+</script>
+
+<button onclick="cuerpo()">Identificar cuerpo celeste</button>
+<p id="r4"></p>
+<script>
+function cuerpo(){
+ let c = Number(prompt("Código 1-5:"));
+ let tipo = "";
+ switch(c){
+   case 1: tipo = "Estrella"; break;
+   case 2: tipo = "Planeta"; break;
+   case 3: tipo = "Cometa"; break;
+   case 4: tipo = "Asteroide"; break;
+   case 5: tipo = "Galaxia"; break;
+   default: tipo = "Código inválido";
+ }
+ document.getElementById("r4").innerText = tipo;
+}
+</script>
+
+<button onclick="lux()">Registrar niveles de luz</button>
+<p id="r5"></p>
+<script>
+function lux(){
+ let seguir;
+ do{
+   let v = Number(prompt("Ingrese nivel de luz:"));
+   if(v < 5){ document.getElementById("r5").innerText = "Noche profunda"; }
+   seguir = prompt("¿Registrar otro? (si/no)");
+ } while(seguir !== "no");
+}
+</script>
+</section>
+<section>
+<h2>Medio Ambiente</h2>
+<button onclick="aire()">Clasificacion calidad del aire</button>
+<p id="m1"></p>
+<script>
+function aire(){
+ let aqi = Number(prompt("Ingrese valor AQI:"));
+ let t="";
+ if(aqi <= 50) t = "Bueno";
+ else if(aqi <= 100) t = "Moderado";
+ else if(aqi <= 150) t = "Dañino";
+ else t = "Muy dañino";
+ document.getElementById("m1").innerText = t;
+}
+</script>
+<button onclick="ruido()">Registrar niveles de ruido ambiental</button>
+<p id="m2"></p>
+<script>
+function ruido(){
+ let n = Number(prompt("¿Cuántas mediciones?"));
+ let suma=0;
+ for(let i=1;i<=n;i++){
+   suma += Number(prompt("dB medición #"+i+":"));
+ }
+ document.getElementById("m2").innerText = "Promedio: " + (suma/n) + " dB";
+}
+</script>
+<button onclick="calor()">Contar focos de calor</button>
+<p id="m3"></p>
+<script>
+function calor(){
+ let t = Number(prompt("Temperatura (0 fin):"));
+ let cont = 0;
+ while(t= 0){
+   if(t > 45) cont++;
+   t = Number(prompt("Temperatura (0 fin):"));
+ }
+ document.getElementById("m3").innerText = "Focos detectados: " + cont;
+}
+</script>
+<button onclick="residuo()">Clasificación del tipo de residuo</button>
+<p id="m4"></p>
+<script>
+function residuo(){
+ let c = Number(prompt("Código 1-4:"));
+ let t="";
+ switch(c){
+   case 1: t="Orgánico"; break;
+   case 2: t="Plástico"; break;
+   case 3: t="Papel / Cartón"; break;
+   case 4: t="Vidrio"; break;
+   default: t="Código inválido";
+ }
+ document.getElementById("m4").innerText = t;
+}
+</script>
+<button onclick="rio()">Monitoreo de niveles del río</button>
+<p id="m5"></p>
+<script>
+function rio(){
+ let seguir;
+ do{
+   let n = Number(prompt("Nivel del río (m):"));
+   if(n > 3){ document.getElementById("m5").innerText = "Alerta: nivel peligroso"; }
+   seguir = prompt("¿Continuar? si/no");
+ }while(seguir !== "no");
+}
+</script>
+</section>
+<section>
+<h2>Salud</h2>
+<button onclick="presion()">Clasificacion de presión arterial</button>
+<p id="s1"></p>
+<script>
+function presion(){
+ let sis = Number(prompt("Sistólica:"));
+ let dia = Number(prompt("Diastólica:"));
+ let r="";
+ if(sis < 120 && dia < 80) r="Normal";
+ else if(sis < 130 && dia < 80) r="Elevada";
+ else if(sis < 140 || dia < 90) r="Hipertensión grado 1";
+ else r="Hipertensión grado 2";
+ document.getElementById("s1").innerText = r;
+}
+</script>
+<button onclick="temperaturas()">Registrar temperatura de varios pacientes</button>
+<p id="s2"></p>
+<script>
+function temperaturas(){
+ let n = Number(prompt("¿Cuántos pacientes?"));
+ let suma = 0;
+ for(let i=1;i<=n;i++){
+   suma += Number(prompt("Temperatura #"+i+":"));
+ }
+ document.getElementById("s2").innerText = "Promedio: " + (suma/n);
+}
+</script>
+<button onclick="fiebre()">Contar pacientes con fiebre</button>
+<p id="s3"></p>
+<script>
+function fiebre(){
+ let t = Number(prompt("Temp (0 fin):"));
+ let cont=0;
+ while(t= 0){
+   if(t >= 38) cont++;
+   t = Number(prompt("Temp (0 fin):"));
+ }
+ document.getElementById("s3").innerText = "Pacientes con fiebre: " + cont;
+}
+</script>
+<button onclick="triage()">Clasificacion de TRIAGE</button>
+<p id="s4"></p>
+<script>
+function triage(){
+ let c = Number(prompt("Código 1-4:"));
+ let r="";
+ switch(c){
+   case 1: r="Rojo"; break;
+   case 2: r="Amarillo"; break;
+   case 3: r="Verde"; break;
+   case 4: r="Azul"; break;
+   default: r="Inválido";
+ }
+ document.getElementById("s4").innerText=r;
+}
+</script>
+<button onclick="spo()">Registrar temperatura de varios pacientes</button>
+<p id="s5"></p>
+<script>
+function spo(){
+ let seguir;
+ do{
+   let v = Number(prompt("Ingrese SpO2:"));
+   document.getElementById("s5").innerText = "Último valor: " + v;
+   seguir = prompt("¿Registrar otro? si/no");
+ }while(seguir== "no");
+}
+</script>
+</section>
+</body>
+</html>
